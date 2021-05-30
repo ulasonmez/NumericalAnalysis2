@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-float fonksiyonSonuc(float a){
-	return exp(-0.5*(a))-a-0.2;
+float fonksiyonSonuc(float xDegeri){
+	return exp(-0.5*(xDegeri))-a-0.2;
 }
 double ikiyeBolmeHata(double son,double ilk,double iterasyon){
 	return ((son-ilk)/pow(2,iterasyon));
@@ -18,8 +18,8 @@ float dogrusalInterpolasyonKok(float ilk,float son){
 	float yeniKok = (ilk*(fonksiyonSonuc(son)) - son*(fonksiyonSonuc(ilk))) / (fonksiyonSonuc(son) - fonksiyonSonuc(ilk));
 	return yeniKok;
 }
-float fonksiyonTurevSonuc(float a){
-	return ((-0.5*(a))*exp((-0.5*(a))-1))-1;
+float fonksiyonTurevSonuc(float x){
+	return ((-0.5*(x))*exp((-0.5*(x))-1))-1;
 }
 int main(int argc, char *argv[]) {
 	int iterasyon,j,ibKontrol=0,ntKontrol=0,diKontrol=0;
