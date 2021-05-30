@@ -28,18 +28,18 @@ int main(int argc, char *argv[]) {
 	float newtonThompsonBaslangic=2.0,newtonThompsonYeni;
 	float ikiyeBolmeIlk=altAralik,ikiyeBolmeOrta,ikiyeBolmeSon=ustAralik;
 	float dogrusalInterIlk=altAralik,dogrusalInterSon=ustAralik,dogrusalInterOrta;
-	printf("                       1. Metot                           2. Metot                             3. Metot\n");
-	printf("#(iterasyon)       kok            e                   kok            e                   kok            e\n");
+	printf("\t\t\t1. Metot\t\t\t 2. Metot\t\t\t\t3. Metot\n");
+	printf("#(iterasyon)\t kok\t\te\t\t\tkok\t     e\t\t\t   kok\t\t   e\n");
 	for(iterasyon =1;iterasyon<=10;iterasyon++){
 	if(fonksiyonSonuc(altAralik)!=0 && fonksiyonSonuc(ustAralik)!=0){
 		if(fonksiyonSonuc(altAralik)*fonksiyonSonuc(ustAralik)<0){
 				ikiyeBolmeOrta = (ikiyeBolmeIlk+ikiyeBolmeSon)/2;
 				if(fonksiyonSonuc(ikiyeBolmeOrta)==0){
-					printf("%d               %f     %f",iterasyon,ikiyeBolmeOrta,ikiyeBolmeHata(ikiyeBolmeSon,ikiyeBolmeIlk,iterasyonAdim));
+					printf("%d\t\t%f\t\t%f",iterasyon,ikiyeBolmeOrta,ikiyeBolmeHata(ikiyeBolmeSon,ikiyeBolmeIlk,iterasyonAdim));
 					break;
 				}
 				else{
-					printf("%d               %f     %f",iterasyon,ikiyeBolmeOrta,ikiyeBolmeHata(ikiyeBolmeSon,ikiyeBolmeIlk,iterasyonAdim));
+					printf("%d\t\t%f    %f",iterasyon,ikiyeBolmeOrta,ikiyeBolmeHata(ikiyeBolmeSon,ikiyeBolmeIlk,iterasyonAdim));
 					if(ikiyeBolmeHata(ikiyeBolmeSon,ikiyeBolmeIlk,iterasyonAdim)<0.02 && ibKontrol==0){
 						ibKontrol=iterasyon;
 					}
@@ -52,16 +52,16 @@ int main(int argc, char *argv[]) {
 						ikiyeBolmeOrta = (ikiyeBolmeIlk+ikiyeBolmeSon)/2;
 					}
 				}
-		}
+	  		}
 			newtonThompsonYeni=newtonThompsonBaslangic -(fonksiyonSonuc(newtonThompsonBaslangic)/fonksiyonTurevSonuc(newtonThompsonBaslangic));
-			printf("               %f     %f",newtonThompsonYeni,newtonThompsonHata(newtonThompsonYeni,newtonThompsonBaslangic));
+			printf("\t\t    %f\t   %f",newtonThompsonYeni,newtonThompsonHata(newtonThompsonYeni,newtonThompsonBaslangic));
 			if(newtonThompsonHata(newtonThompsonYeni,newtonThompsonBaslangic)<0.02 && ntKontrol==0){
 				ntKontrol=iterasyon;
 			}
 			newtonThompsonBaslangic = newtonThompsonYeni;
 			dogrusalInterOrta = dogrusalInterpolasyonKok(dogrusalInterIlk,dogrusalInterSon);
 			if(fonksiyonSonuc(dogrusalInterIlk)*fonksiyonSonuc(dogrusalInterSon)<0){
-					printf("              %f      %f\n",dogrusalInterOrta,dogrusalInterpolasyonHata(dogrusalInterSon,dogrusalInterOrta));
+					printf("\t\t%f\t%f\n",dogrusalInterOrta,dogrusalInterpolasyonHata(dogrusalInterSon,dogrusalInterOrta));
 					if(dogrusalInterpolasyonHata(dogrusalInterSon,dogrusalInterOrta)<0.02 && diKontrol==0){
 						diKontrol=iterasyon;
 					}
@@ -75,14 +75,9 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-	if(ibKontrol!=0){
 		printf("\n\nIkiye bolme metodu ile 0.02 den daha kucuk hata degerine %d. adimda ulasilmistir.\n",ibKontrol);
-	}
-	if(ntKontrol!=0){
 		printf("Newton Thompson metodu ile 0.02 den daha kucuk hata degerine %d. adimda ulasilmistir.\n",ntKontrol);
-	}
-	if(diKontrol!=0){
 		printf("Dogrusal Interpolasyon metodu ile 0.02 den daha kucuk hata degerine %d. adimda ulasilmistir.\n",diKontrol);
-	}
+
 	return 0;
 }
